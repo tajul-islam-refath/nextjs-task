@@ -1,6 +1,7 @@
 "use client";
-
+import { useSelectedLayoutSegment, usePathname } from "next/navigation";
 import { useRef } from "react";
+import NavLink from "./ActiveLink";
 
 const DashboardLayout = ({ children }) => {
   let sideNavRef,
@@ -49,9 +50,11 @@ const DashboardLayout = ({ children }) => {
         <div className="sidebarMenu">
           <ul className="sidebarMenu__list">
             <li className="sidebarMenu__list__item">
-              <a className="sidebarMenu__list__item__link">
+              <NavLink
+                classname="sidebarMenu__list__item__link"
+                href="/dashboard">
                 <p>Dashboard</p>
-              </a>
+              </NavLink>
             </li>
             <li className="sidebarMenu__list__item">
               <a className="sidebarMenu__list__item__link">

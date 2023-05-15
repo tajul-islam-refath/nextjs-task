@@ -1,16 +1,18 @@
-import style from "./app.module.scss";
-import Image from "next/image";
+import style from "./registation.module.scss";
 import Link from "next/link";
-
-export default function Home() {
+import Head from "next/head";
+export default function Register() {
   return (
-    <main>
-      <div className={style.login}>
+    <>
+      <Head>
+        <title>Registation Page</title>
+      </Head>
+      <div className={style.registation}>
         <div className={style.innerContainer}>
           <div className={`rounded shadow ${style.innerBox}`}>
             <div className="text-center">
               <p className="fw-bold">
-                <b>WELCOME ADMIN </b>
+                <b>Create A New Account </b>
               </p>
             </div>
 
@@ -24,6 +26,27 @@ export default function Home() {
                   placeholder="Enter email"
                 />
               </div>
+
+              <div className="form-group">
+                <label htmlFor="firstName">First Name</label>
+                <input
+                  type="text"
+                  className="form-control input-focus-none my-2"
+                  id="firstName"
+                  placeholder="Enter first name"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="lastName">Last Name</label>
+                <input
+                  type="text"
+                  className="form-control input-focus-none my-2"
+                  id="lastName"
+                  placeholder="Enter last name"
+                />
+              </div>
+
               <div className="form-group">
                 <label htmlFor="exampleInputPassword1">Password</label>
                 <input
@@ -43,14 +66,14 @@ export default function Home() {
             </div> */}
 
             <div className="alert alert-warning">
-              <span>You don't have an account yet?</span>
-              <Link className="alert-link" href="/registation">
-                Register a new account
+              <span>Already have an account?</span>
+              <Link className="alert-link" href="/">
+                Login
               </Link>
             </div>
           </div>
         </div>
       </div>
-    </main>
+    </>
   );
 }

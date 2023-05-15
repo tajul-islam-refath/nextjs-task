@@ -1,0 +1,32 @@
+.registation {
+  background: url("/images/login-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100vh;
+  width: 100%;
+
+  .innerContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .innerBox {
+    width: 450px;
+    height: auto;
+    background-color: #ffffff;
+    border: 1px solid black;
+    padding: 10px;
+  }
+
+  .signIn-btn {
+    width: 100%;
+    background-image: linear-gradient(#00dbde, #fc00ff);
+    color: white;
+    border: none;
+    padding: 6px 0;
+  }
+}

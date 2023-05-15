@@ -95,20 +95,17 @@
         }
       }
     }
+  }
+}
 
-    // active route
-    .active {
-      a {
-        background: #028a9c;
-        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25),
-          0px 2px 2px rgba(0, 0, 0, 0.25);
-        color: #fff !important;
+// active route
+.active {
+  background: #028a9c;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25), 0px 2px 2px rgba(0, 0, 0, 0.25);
+  color: #fff !important;
 
-        p {
-          color: #fff !important;
-        }
-      }
-    }
+  p {
+    color: #fff !important;
   }
 }
 
