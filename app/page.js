@@ -1,8 +1,23 @@
+"use client";
+import { useRef } from "react";
+import { signIn } from "next-auth/react";
 import style from "./app.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
+  let emailRef = useRef();
+  let passwordRef = useRef();
+
+  const onSubmit = () => {
+    const email = emailRef.value;
+    const password = passwordRef.value;
+
+    signIn("Credentials", {
+      email,
+      password,
+    });
+  };
   return (
     <main>
       <div className={style.login}>
@@ -22,6 +37,7 @@ export default function Home() {
                   className="form-control input-focus-none my-2"
                   id="exampleInputEmail1"
                   placeholder="Enter email"
+                  ref={(dev) => (emailRef = dev)}
                 />
               </div>
               <div className="form-group">
@@ -31,16 +47,17 @@ export default function Home() {
                   className="form-control input-focus-none  my-2"
                   id="exampleInputPassword1"
                   placeholder="Password"
+                  ref={(dev) => (passwordRef = dev)}
                 />
               </div>
 
-              <button type="submit" className="btn btn-primary  my-2">
+              <button
+                type="button"
+                className="btn btn-primary  my-2"
+                onClick={() => onSubmit()}>
                 Submit
               </button>
             </form>
-            {/* <div className="mt-3 alert alert-warning">
-              <a className="alert-link">Did you forget your password?</a>
-            </div> */}
 
             <div className="alert alert-warning">
               <span>You don't have an account yet?</span>
