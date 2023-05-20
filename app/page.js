@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import style from "./app.module.scss";
 import Image from "next/image";
@@ -8,15 +9,24 @@ import Link from "next/link";
 export default function Home() {
   let emailRef = useRef();
   let passwordRef = useRef();
+  const router = useRouter();
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const email = emailRef.value;
     const password = passwordRef.value;
 
-    signIn("Credentials", {
+    let result = await signIn("credentials", {
       email,
       password,
+      redirect: false,
     });
+
+    if (result.error) {
+      console.log(result);
+      alert("Something went wrong. Please try again!");
+    } else {
+      router.push("/dashboard");
+    }
   };
   return (
     <main>
