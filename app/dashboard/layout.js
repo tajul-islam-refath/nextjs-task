@@ -1,6 +1,7 @@
 "use client";
 import { useSelectedLayoutSegment, usePathname } from "next/navigation";
 import { useRef } from "react";
+import { signOut } from "next-auth/react";
 import NavLink from "./ActiveLink";
 
 const DashboardLayout = ({ children }) => {
@@ -62,18 +63,10 @@ const DashboardLayout = ({ children }) => {
               </a>
             </li>
             <li className="sidebarMenu__list__item">
-              <a className="sidebarMenu__list__item__link">
-                <p>Role Assign</p>
-              </a>
-            </li>
-            <li className="sidebarMenu__list__item">
-              <a className="sidebarMenu__list__item__link">
-                <p>Employees</p>
-              </a>
-            </li>
-            <li className="sidebarMenu__list__item">
-              <a className="sidebarMenu__list__item__link">
-                <p>Attendance</p>
+              <a
+                className="sidebarMenu__list__item__link"
+                onClick={() => signOut({ callbackUrl: "/" })}>
+                <p>SignOut</p>
               </a>
             </li>
           </ul>
