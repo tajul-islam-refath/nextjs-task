@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Head from "next/head";
 
+import axiosInstance from "../../axios/axiosInstance";
+
 import { apiUrl } from "../../model/api";
 export default function Register() {
   let emailRef,
@@ -26,11 +28,10 @@ export default function Register() {
       photo: "",
     };
 
-    const response = await fetch(`${apiUrl}/user/registration`, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: { "Content-Type": "application/json" },
-    });
+    const response = await axiosInstance.post(
+      `/user/registration`,
+      JSON.stringify(data)
+    );
 
     let result = await response.json();
 

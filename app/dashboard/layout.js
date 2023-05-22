@@ -1,13 +1,22 @@
 "use client";
 import { useSelectedLayoutSegment, usePathname } from "next/navigation";
-import { useRef } from "react";
-import { signOut } from "next-auth/react";
+
+import { useRef, useEffect } from "react";
+import { signOut, useSession } from "next-auth/react";
 import NavLink from "./ActiveLink";
 
 const DashboardLayout = ({ children }) => {
+  const { data: session } = useSession();
+
   let sideNavRef,
     contentRef,
     topBarRef = useRef();
+
+  useEffect(() => {
+    if (session) {
+      localStorage.setItem("token", JSON.stringify(session?.token));
+    }
+  }, []);
 
   const MenuBarClickHandler = () => {
     let sideNav = sideNavRef;
@@ -57,11 +66,7 @@ const DashboardLayout = ({ children }) => {
                 <p>Dashboard</p>
               </NavLink>
             </li>
-            <li className="sidebarMenu__list__item">
-              <a className="sidebarMenu__list__item__link">
-                <p>User</p>
-              </a>
-            </li>
+
             <li className="sidebarMenu__list__item">
               <a
                 className="sidebarMenu__list__item__link"

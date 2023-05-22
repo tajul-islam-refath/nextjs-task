@@ -1,6 +1,8 @@
 "use client";
 import "../styles/globals.scss";
-import { SessionProvider } from "next-auth/react";
+import { useEffect } from "react";
+import { SessionProvider, getSession } from "next-auth/react";
+
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -11,6 +13,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children, pageProps }) {
+  useEffect(() => {}, []);
+
   return (
     <html lang="en">
       <body className={inter.className}>
