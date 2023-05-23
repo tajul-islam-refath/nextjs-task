@@ -14,4 +14,5 @@ pnpm dev
 
 - NextJs 13th structure
 - Routing system
+- Dynamic routing
 - Next-Auth for authentication

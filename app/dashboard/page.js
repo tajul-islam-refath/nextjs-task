@@ -1,11 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Head from "next/head";
 import DashboardLayout from "./layout";
 
 import axiosInstance from "@/components/axios/axiosInstance";
 import { useSession } from "next-auth/react";
 
 const Dashboard = () => {
+  const router = useRouter();
   const { data: session } = useSession();
   const [lists, setLists] = useState([]);
 
@@ -17,14 +21,32 @@ const Dashboard = () => {
     }
   };
 
+  const onDelete = async (id) => {
+    let { data } = await axiosInstance.get(`/task/delete/${id}`, {
+      cache: "no-store",
+    });
+    if (data.status == "success") {
+      getTaskList();
+    } else {
+      alert("Error on deleting");
+    }
+  };
+
   useEffect(() => {
     getTaskList();
   }, []);
-  console.log(lists);
+
   return (
     <div>
+      <Head>
+        <title>Dashboard</title>
+      </Head>
       <div className="container mt-5">
-        <button className="btn btn-primary">Create Task</button>
+        <button
+          className="btn btn-primary"
+          onClick={() => router.push("/dashboard/task")}>
+          Create Task
+        </button>
         <table class="table">
           <thead>
             <tr>
@@ -43,7 +65,12 @@ const Dashboard = () => {
                 <td>{list.description}</td>
                 <td>{list.status}</td>
                 <td>
-                  <button>Delete</button>
+                  <Link href={`/dashboard/task/${list._id}`}>
+                    <i class="bi bi-pencil-square"></i>
+                  </Link>
+                  <i
+                    class="bi bi-trash3-fill text-danger pl-1"
+                    onClick={() => onDelete(list._id)}></i>
                 </td>
               </tr>
             ))}
