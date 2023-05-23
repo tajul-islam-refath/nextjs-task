@@ -10,7 +10,7 @@ yarn dev
 pnpm dev
 ```
 
-## My Learn
+## My Learning
 
 - NextJs 13th structure
 - Routing system
